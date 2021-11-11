@@ -1,0 +1,30 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    VrstaKarte vk = (VrstaKarte)ViewData["VrstaKarte"];
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Uredi </h2>
+            <ol>
+                <li><a href="/VrstaKarte">Vrati nazad</a></li>
+                <li>Uredi</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/VrstaKarte/SpasiUredjivanjeVrste">
+    <input style="display:none" name="ID" value="@vk.ID" />
+    <div class="form-group">
+        <label>Vrsta karte</label>
+        <input class="form-control" name="nazivVrste" value="@vk.naziv" />
+    </div>
+    <div class="form-group">
+        <label>Informacije o vrsti karte</label>
+        <input class="form-control" name="informacije" value="@vk.Informacije" />
+    </div>
+    <input type="submit" value="Snimi" />
+</form>
+<a href="/VrstaKarte">Vrati nazad</a>

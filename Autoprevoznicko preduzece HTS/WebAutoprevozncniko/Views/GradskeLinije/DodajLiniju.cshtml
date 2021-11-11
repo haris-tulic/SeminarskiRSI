@@ -1,0 +1,67 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "DodajLiniju";
+    List<ComboBox> brojautobusa = (List<ComboBox>)ViewData["autobus"];
+    List<ComboBox> stanicaPolaska = (List<ComboBox>)ViewData["stanicaPolaska"];
+    List<ComboBox> stanicaDolaska = (List<ComboBox>)ViewData["stanicaDolaska"];
+    List<ZonaVM> zona = (List<ZonaVM>)ViewData["zona"];
+
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="padding-top:40px" >
+            <h2>Dodaj liniju </h2>
+            @*<ol>
+                <li><a href="/Karta">Vrati nazad</a></li>
+                <li>Dodaj liniju</li>
+            </ol>*@
+        </div>
+    </div>
+</section>
+<form action="/GradskeLinije/SpasiLiniju">
+    <div class="form-group">
+        <select name="brojAutobusa" class="form-control">
+            <option>Broj autobusa</option>
+            @foreach (ComboBox a in brojautobusa)
+            {
+                <option value="@a.ID">@a.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select name="zonaID" class="form-control">
+            <option>Odaberite zonu</option>
+            @foreach (ZonaVM z in zona)
+            {
+                <option value="@z.ID">@z.BrojZone</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="stanicaPolaskaID">
+            <option>stanica polaska</option>
+            @foreach (ComboBox sp in stanicaPolaska)
+            {
+                <option value="@sp.ID">@sp.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="stanicaDolaskaID">
+            <option>Stanica dolaska</option>
+            @foreach (ComboBox sp in stanicaDolaska)
+            {
+                <option value="@sp.ID">@sp.naziv</option>
+            }
+        </select>
+    </div>
+    <br />
+    <input type="submit" value="Snimi" />
+
+</form>
+<br />
+<a class="btn btn-secondary" href="/GradskeLinije">Vrati nazad</a>
+

@@ -1,0 +1,46 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    Kupac k = (Kupac)ViewData["kupac"];
+    List<GradoviWM> gradovi = (List<GradoviWM>)ViewData["gradovi"];
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Uredi </h2>
+            <ol>
+                <li><a href="/Kupac">Vrati nazad</a></li>
+                <li>Uredi</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form class="table" action="/Kupac/SpasiUredjivanje">
+    <input class="form-control" name="KupacID" style="display:none" value="@k.ID" />
+    <label>Ime kupca</label>
+    <input class="form-control" name="ime" value="@k.ime" /><br />
+    <label>Prezime kupca</label>
+    <input class="form-control" name="prezime" value="@k.prezime" /><br />
+    <label>telefon</label>
+    <input class="form-control" name="Telefon" value="@k.telefon" /><br />
+    <label>Email</label>
+    <input class="form-control" name="Email" value="@k.email" /><br />
+    <select class="form-control" name="gradID">
+        <option>Odaberite grad</option>
+        @foreach (GradoviWM g in gradovi)
+        {
+            if (g.ID == k.gradID)
+            {
+                <option selected value="@g.ID">@g.naziv</option>
+            }
+            <option value="@g.ID">@g.naziv</option>
+        }
+    </select>
+    <br />
+    <input type="submit" value="Snimi" />
+    <br />
+
+</form>
+<a href="/Kupac">Vrati nazad</a>
+

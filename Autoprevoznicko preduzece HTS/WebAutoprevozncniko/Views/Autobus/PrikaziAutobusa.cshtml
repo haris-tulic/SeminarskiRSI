@@ -1,0 +1,100 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.AspNetCore.Http;
+@using WebAutoprevozncniko.Helper
+@{
+    ViewData["Title"] = "PrikaziAutobusa";
+    List<Autobus> autobusi = (List<Autobus>)ViewData["AutobusiPrikaz"];
+    Login login = Context.GetLogiraniKorisnik();
+    MyContext _context = Context.RequestServices.GetService<MyContext>();
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+            <h2>Lista svih autobusa</</h2>
+            @*<ol>
+                    <li><a href="/Autobus">Vrati nazad</a></li>
+                    <li>Lista svih autobusa</li>
+                </ol>*@
+        </div>
+    </div>
+</section>
+@if (_context.vozac.Where(x => x.loginID == login.ID).FirstOrDefault() != null)
+{
+    <form class="table">
+        <table>
+            <tr>
+                <td>Broj autobusa</td>
+                <td>Broj sjedista</td>
+                <td>Godiste autobusa</td>
+                <td>Info</td>
+                @*<td>Obrisi autobus</td>
+                <td>Uredi autobus</td>*@
+
+            </tr>
+
+            @foreach (Autobus a in autobusi)
+            {
+                <tr>
+                    <td>@a.RedniBrojAutobusa</td>
+                    <td>@a.BrojSjedila</td>
+                    <td>@a.GodisteAutobusa</td>
+                    <td>@a.informacije</td>
+                    @*<td>
+                        <a class="btn btn-danger" href="/Autobus/ObrisiAutobus?ID=@a.ID">Obrisi</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/Autobus/UrediAutobus?ID=@a.ID">Uredi </a>
+                    </td>*@
+                </tr>
+            }
+        </table>
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Home">Vrati nazad</a>
+}
+else
+{
+    <form class="table">
+        <table>
+            <tr>
+                <td>Broj autobusa</td>
+                <td>Broj sjedista</td>
+                <td>Godiste autobusa</td>
+                <td>Info</td>
+                <td>Obrisi autobus</td>
+                <td>Uredi autobus</td>
+                <td>Izvjestaj </td>
+            </tr>
+
+            @foreach (Autobus a in autobusi)
+            {
+                <tr>
+                    <td>@a.RedniBrojAutobusa</td>
+                    <td>@a.BrojSjedila</td>
+                    <td>@a.GodisteAutobusa</td>
+                    <td>@a.informacije</td>
+
+                    <td>
+                        <a class="btn btn-danger" href="/Autobus/ObrisiAutobus?ID=@a.ID">Obrisi</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/Autobus/UrediAutobus?ID=@a.ID">Uredi </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="/Report/IndexA?ID=@a.ID">Generisi izvještaj</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Autobus">Vrati nazad</a>
+}
+

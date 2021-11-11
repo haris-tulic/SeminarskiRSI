@@ -1,0 +1,153 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.AspNetCore.Http;
+@using WebAutoprevozncniko.Helper
+@{
+    ViewData["Title"] = "ListaLinija";
+    List<GradskaLinijaPrikaziVM> gradskeLinije = (List<GradskaLinijaPrikaziVM>)ViewData["gradskeLinije"];
+    Login login = Context.GetLogiraniKorisnik();
+    MyContext _context = Context.RequestServices.GetService<MyContext>();
+}
+
+@if (login == null)
+{
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:20px">
+                <h2>Lista linija </h2>
+                @*<ol>
+                        <li><a href="/Karta">Vrati nazad</a></li>
+                        <li>Lista linija</li>
+                    </ol>*@
+            </div>
+        </div>
+    </section>
+
+    <form class="table">
+        <table>
+
+            <tr>
+                <td>Broj autobusa</td>
+                <td>Zona</td>
+                <td>Stanica polaska</td>
+                <td>Stanica dolaska</td>
+                @*<td>Obrisi</td>
+                    <td>Uredi</td>*@
+            </tr>
+            @foreach (GradskaLinijaPrikaziVM gl in gradskeLinije)
+            {
+                <tr>
+                    <td>@gl.brojAutobusa</td>
+                    <td>@gl.zona</td>
+                    <td>@gl.stanicaPolaska</td>
+                    <td>@gl.stanicaDolaska</td>
+                    @*<td>
+                            <a href="/GradskeLinije/Obrisi?ID=@gl.ID">Obrisi</a>
+                        </td>
+                        <td>
+                            <a href="/GradskeLinije/Uredi?ID=@gl.ID">Uredi</a>
+                        </td>*@
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Home">Vrati nazad</a>
+}
+else if (_context.vozac.Where(x => x.loginID == login.ID).FirstOrDefault() != null)
+{
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+                <h2>Lista linija </h2>
+                @*<ol>
+                        <li><a href="/Karta">Vrati nazad</a></li>
+                        <li>Lista linija</li>
+                    </ol>*@
+            </div>
+        </div>
+    </section>
+    <form class="table">
+        <table>
+
+            <tr>
+                <td>Broj autobusa</td>
+                <td>Zona</td>
+                <td>Stanica polaska</td>
+                <td>Stanica dolaska</td>
+                @*<td>Obrisi</td>
+                    <td>Uredi</td>*@
+            </tr>
+            @foreach (GradskaLinijaPrikaziVM gl in gradskeLinije)
+            {
+                <tr>
+                    <td>@gl.brojAutobusa</td>
+                    <td>@gl.zona</td>
+                    <td>@gl.stanicaPolaska</td>
+                    <td>@gl.stanicaDolaska</td>
+                    @*<td>
+                            <a class="btn btn-danger" href="/GradskeLinije/Obrisi?ID=@gl.ID">Obrisi</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" href="/GradskeLinije/Uredi?ID=@gl.ID">Uredi</a>
+                        </td>*@
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Home">Vrati nazad</a>
+}
+else
+{
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+                <h2>Lista linija </h2>
+                @*<ol>
+                        <li><a href="/Karta">Vrati nazad</a></li>
+                        <li>Lista linija</li>
+                    </ol>*@
+            </div>
+        </div>
+    </section>
+
+    <form class="table">
+        <table>
+
+            <tr>
+                <td>Broj autobusa</td>
+                <td>Zona</td>
+                <td>Stanica polaska</td>
+                <td>Stanica dolaska</td>
+                <td>Obrisi</td>
+                <td>Uredi</td>
+            </tr>
+            @foreach (GradskaLinijaPrikaziVM gl in gradskeLinije)
+            {
+                <tr>
+                    <td>@gl.brojAutobusa</td>
+                    <td>@gl.zona</td>
+                    <td>@gl.stanicaPolaska</td>
+                    <td>@gl.stanicaDolaska</td>
+                    <td>
+                        <a class="btn btn-danger" href="/GradskeLinije/Obrisi?ID=@gl.ID">Obrisi</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/GradskeLinije/Uredi?ID=@gl.ID">Uredi</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/GradskeLinije">Vrati nazad</a>
+}
+

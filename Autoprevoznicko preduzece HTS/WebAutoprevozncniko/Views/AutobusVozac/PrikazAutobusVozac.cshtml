@@ -1,0 +1,52 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "vozacautobus";
+    List<AutobusVozacVM> autobusVozac = (List<AutobusVozacVM>)ViewData["vozacautobus"];
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+            <h2>Pridruzivanje autobusa vozacima </h2>
+            <ol>
+                <li><a href="/AutobusVozac">Vrati nazad</a></li>
+                <li>Pridruzivanje autobusa vozacima</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form class="table">
+    <table>
+        <tr>
+            <td>Autobus</td>
+            <td>Vozac</td>
+            <td>Datum pocetka</td>
+            <td>Datum zavrsetka</td>
+            <td>Smjena</td>
+            <td>Obrisi</td>
+            <td>Uredi</td>
+        </tr>
+        @foreach (AutobusVozacVM av in autobusVozac)
+        {
+    <tr>
+        <td>@av.autobus</td>
+        <td>@av.vozac</td>
+        <td>@av.pocetak</td>
+        <td>@av.kraj</td>
+        <td>@av.smjena</td>
+
+        <td>
+            <a href="/AutobusVozac/ObrisiAutobusVozac?AutobusVozacID=@av.ID" class="btn btn-danger">Obrisi</a>
+        </td>
+        <td>
+            <a href="/AutobusVozac/UrediAutobusVozac?AutobusVozacID=@av.ID" class="btn btn-warning">Uredi</a>
+        </td>
+    </tr>
+        }
+    </table>
+
+</form>
+<br />
+<a class="btn btn-secondary" href="/AutobusVozac">Vrati nazad</a>
+

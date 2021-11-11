@@ -1,0 +1,42 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model
+@using WebAutoprevozncniko.ViewModels
+
+@{
+    ViewData["Title"] = "DodajRedVoznje";
+    List<ComboBox> linija = (List<ComboBox>)ViewData["linija"];
+}
+
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+            <h2>Dodaj red voznje </h2>
+            <ol>
+                <li><a href="/Karta">Vrati nazad</a></li>
+                <li>Dodaj red voznje</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/RedVoznje/SpasiRedVoznje">
+    <div class="form-group">
+        <select name="linijaID" class="form-control">
+            <option>Odaberite liniju</option>
+            @foreach (ComboBox l in linija)
+            {
+                <option value="@l.ID">@l.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Vrijeme polaska</label>
+        <input class="form-control" type="datetime" name="vrijemePolaska" />
+    </div>
+
+    <br />
+    <input type="submit" value="Snimi" />
+
+</form>
+<br />
+<a class="btn btn-secondary" href="/GradskeLinije">Vrati nazad</a>
+

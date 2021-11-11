@@ -1,0 +1,67 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "DodajAutobusVozac";
+    List<ComboBox> autobus = (List<ComboBox>)ViewData["autobus"];
+    List<ComboBox> vozac = (List<ComboBox>)ViewData["vozac"];
+    AutobusVozac av = (AutobusVozac)ViewData["av"];
+
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Dodaj AutobusVozac </h2>
+            <ol>
+                <li><a href="/AutobusVozac">Vrati nazad</a></li>
+                <li>Dodaj AutobusVozac</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/AutobusVozac/SpasiUredi">
+    <div class="form-group">
+        <input  name="AutobusVozacID" style="display:none " value="@av.ID"/>
+        <select name="AutobusID" class="form-control">
+            <option>Odaberite autobus</option>
+            @foreach (ComboBox a in autobus)
+            {
+                if (a.ID == av.autobusID)
+                {
+                    <option selected value="@a.ID">@a.naziv</option>
+                }
+                <option value="@a.ID">@a.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select name="vozacID" class="form-control">
+            <option>Odaberite vozaca</option>
+            @foreach (ComboBox v in vozac)
+            {
+                if (v.ID ==av.vozacID)
+                {
+                    <option selected value="@v.ID">@v.naziv</option>
+                }
+                <option value="@v.ID">@v.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Datum pocetka</label>
+        <input class="form-control" type="datetime" name="DatumPocetka" value="@av.pocetak" />
+    </div>
+    <div class="form-group">
+        <label>Datum Zavrsetka</label>
+        <input class="form-control" type="datetime" name="DatumZavrsetka" value="@av.kraj" />
+    </div>
+    <div class="form-group">
+        <label>Smjena</label>
+        <input class="form-control" name="Smjena" value="@av.smjena" />
+    </div>
+    <br />
+    <input type="submit" value="Snimi" />
+
+</form>
+<a href="/AutobusVozac">Vrati nazad</a>
+

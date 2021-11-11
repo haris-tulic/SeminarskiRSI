@@ -1,0 +1,125 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.AspNetCore.Http;
+@using WebAutoprevozncniko.Helper
+@{
+    ViewData["Title"] = "ListaKarata";
+    List<KartaPrikaziVM> karte = (List<KartaPrikaziVM>)ViewData["Karte"];
+    Login login = Context.GetLogiraniKorisnik();
+    MyContext _context = Context.RequestServices.GetService<MyContext>();
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+            <h2>Lista karata </h2>
+            @*<ol>
+                    <li><a href="/Karta">Vrati nazad</a></li>
+                    <li>Lista karata</li>
+                </ol>*@
+        </div>
+    </div>
+</section>
+@if (_context.vozac.Where(x => x.loginID == login.ID).FirstOrDefault() != null)
+{
+
+    <form class="table">
+        <table>
+            <tr>
+                <td>Ime kupca</td>
+                <td>Prezime kupca</td>
+                <td>Tip karte</td>
+                <td>Vrsta karte</td>
+                <td>Datum vadjenja karte</td>
+                <td>Datum vazenja karte</td>
+                <td>zona upravljanja</td>
+                @*<td>Obrisi</td>
+                    <td>Uredi</td>*@
+                <td>
+                    <a class="btn btn-info" href="/Karta/PrikazPutnika">Pretraga po zoni</a>
+                </td>
+            </tr>
+
+            @foreach (KartaPrikaziVM k in karte)
+            {
+                <tr>
+                    <td>@k.ime</td>
+                    <td>@k.prezime</td>
+                    <td>@k.tipKarte</td>
+                    <td>@k.vrstaKarte</td>
+                    <td>@k.DatumVadjenja</td>
+                    <td>@k.datumVazenja</td>
+                    <td>@k.zona</td>
+                    @*<td>
+                            <a class="btn btn-danger" href="/Karta/Obrisi?ID=@k.ID">Obrisi</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" href="/Karta/Uredi?ID=@k.ID">Uredi</a>
+                        </td>*@
+                </tr>
+            }
+        </table>
+
+    </form>
+    <a class="btn btn-link" href="/VrstaKarte/ListaVrstaKarata">Lista vrsta karti</a>
+    <br />
+    <a class="btn btn-link" href="/TipKarte/ListaTipovaKarata">Lista tipova karti</a>
+    <br />
+    <a class="btn btn-secondary" href="/Home">Vrati nazad</a>
+}
+else
+{
+    <form class="table">
+        <table>
+            <tr>
+                <td>Ime kupca</td>
+                <td>Prezime kupca</td>
+                <td>Tip karte</td>
+                <td>Vrsta karte</td>
+                <td>Datum vadjenja karte</td>
+                <td>Datum vazenja karte</td>
+                <td>zona upravljanja</td>
+                <td>Obrisi</td>
+                <td>Uredi</td>
+                <td>Izvjestaj</td>
+                <td>
+                    <a class="btn btn-info" href="/Karta/PrikazPutnika">Pretraga po zoni</a>
+                </td>
+            </tr>
+
+            @foreach (KartaPrikaziVM k in karte)
+            {
+                <tr>
+                    <td>@k.ime</td>
+                    <td>@k.prezime</td>
+                    <td>@k.tipKarte</td>
+                    <td>@k.vrstaKarte</td>
+                    <td>@k.DatumVadjenja</td>
+                    <td>@k.datumVazenja</td>
+                    <td>@k.zona</td>
+                    <td>
+                        <a class="btn btn-danger" href="/Karta/Obrisi?ID=@k.ID">Obrisi</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/Karta/Uredi?ID=@k.ID">Uredi</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" href="/Report/Index?ID=@k.ID">Printaj kartu</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </form>
+    <a class="btn btn-link" href="/VrstaKarte/ListaVrstaKarata">Lista vrsta karti</a>
+    <br />
+    <a class="btn btn-link" href="/TipKarte/ListaTipovaKarata">Lista tipova karti</a>
+    <br />
+    <a class="btn btn-secondary" href="/Karta">Vrati nazad</a>
+}
+

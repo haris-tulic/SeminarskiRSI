@@ -1,0 +1,84 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "Uredi";
+    List<ComboBox> brojautobusa = (List<ComboBox>)ViewData["autobus"];
+    List<ComboBox> stanicaPolaska = (List<ComboBox>)ViewData["stanicaPolaska"];
+    List<ComboBox> stanicaDolaska = (List<ComboBox>)ViewData["stanicaDolaska"];
+    List<ZonaVM> zona = (List<ZonaVM>)ViewData["zona"];
+    GradskeLinije gl = (GradskeLinije)ViewData["gradskaLinija"];
+
+}
+
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Uredi liniju </h2>
+            <ol>
+                <li><a href="/Karta">Vrati nazad</a></li>
+                <li>Uredi liniju</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/GradskeLinije/SpasiUredi">
+    <div class="form-group">
+        <input name="ID" value="@gl.ID" style="display:none" />
+        <select name="brojAutobusa" class="form-control">
+            <option>Broj autobusa</option>
+            @foreach (ComboBox a in brojautobusa)
+            {
+                if (a.ID == gl.BrojAutobusaID)
+                {
+                    <option selected value="@a.ID">@a.naziv</option>
+                }
+                <option value="@a.ID">@a.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select name="zonaID" class="form-control">
+            <option>Odaberite zonu</option>
+            @foreach (ZonaVM z in zona)
+            {
+                if (z.ID == gl.zonaID)
+                {
+                    <option selected value="@z.ID">@z.BrojZone</option>
+                }
+                <option value="@z.ID">@z.BrojZone</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" name="stanicaPolaskaID">
+            <option>stanica polaska</option>
+            @foreach (ComboBox sp in stanicaPolaska)
+            {
+                if (sp.ID == gl.StanicaPolaskaID)
+                {
+                    <option selected value="@sp.ID">@sp.naziv</option>
+                }
+                <option value="@sp.ID">@sp.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="stanicaDolaskaID">
+            <option>Stanica dolaska</option>
+            @foreach (ComboBox sp in stanicaDolaska)
+            {
+                if (sp.ID == gl.StanicaDolaskaID)
+                {
+                    <option selected value="@sp.ID">@sp.naziv</option>
+                }
+                <option value="@sp.ID">@sp.naziv</option>
+            }
+        </select>
+    </div>
+    <br />
+    <input type="submit" value="Snimi" />
+
+</form>
+<a href="/GradskeLinije">Vrati nazad</a>

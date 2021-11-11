@@ -1,0 +1,27 @@
+﻿<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>SMS Controller</h2>
+            <ol>
+                <li><a href="/Home">Pocetna</a></li>
+                <li>SMS Controller</li>
+            </ol>
+        </div>
+    </div>
+</section>
+@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@model WebAutoprevozncniko.ViewModels.KupacPrikaziWM;
+@{
+
+    Kupac k = (Kupac)ViewData["kupac"];
+}
+
+@using (Html.BeginForm("Send", "SMS", FormMethod.Post))
+{
+
+    <input id="to" name="to" type="text" placeholder="To" value="@k?.telefon" />
+    <input id="text" name="text" type="text" placeholder="Text" />
+    <input type="submit" value="Send" />
+}

@@ -1,0 +1,31 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    TipKarte tk = (TipKarte)ViewData["TipKarte"];
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Uredi </h2>
+            <ol>
+                <li><a href="/TipKarte">Vrati nazad</a></li>
+                <li>Uredi</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/TipKarte/SpasiUredjivanjeTipa">
+    <input style="display:none" name="ID" value="@tk.ID" />
+    <div class="form-group">
+        <label>Tip karte</label>
+        <input class="form-control" name="nazivTipa" value="@tk.naziv" />
+    </div>
+    <div class="form-group">
+        <label>Informacije o tipu karte</label>
+        <input class="form-control" name="informacije" value="@tk.Informacije" />
+    </div>
+    <input type="submit" value="Snimi" />
+</form>
+<a href="/TipKarte">Vrati nazad</a>
+

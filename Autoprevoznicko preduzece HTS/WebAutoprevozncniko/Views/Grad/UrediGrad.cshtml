@@ -1,0 +1,31 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    Grad g = (Grad)ViewData["Grad"];
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Uredi </h2>
+            <ol>
+                <li><a href="/Grad">Vrati nazad</a></li>
+                <li>Uredi</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/Grad/SpasiUredjivanje">
+    <input name="ID" style="display:none" value="@g.ID" />
+    <div class="form-group">
+        <label>Naziv grada</label>
+        <input class="form-control" name="NazivGrada" value="@g.nazivGrada" />
+    </div>
+    <div class="form-group">
+        <label>Postanski broj</label>
+        <input class="form-control" name="PostanskiBroj" value="@g.PostanskiBroj" />
+    </div>
+    <input type="submit" value="Snimi" />
+</form>
+<a href="/Grad">Vrati nazad</a>
+

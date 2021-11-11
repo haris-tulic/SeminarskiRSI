@@ -1,0 +1,32 @@
+﻿
+
+@model WebAutoprevozncniko.ViewModels.VozacPretragaVM;
+@{
+    ViewData["Title"] = "PretragaVozaca";
+}
+
+<select asp-for="ID" asp-items="@Model.vozaci" class="form-control" id="vozac" style="margin-top:150px;">  
+    <option disabled selected>Pretraga po korisnickom imenu: </option>
+</select>
+
+<table class="table" id="tabelaID">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Datum rodjena</th>
+            <th>Email</th>
+            <th>Vozacka kategorija</th>
+        </tr>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+
+<script>
+
+
+</script>
+<a class="btn btn-info" href="/Vozac/PrikazVozaca">Lista svih vozaca</a>

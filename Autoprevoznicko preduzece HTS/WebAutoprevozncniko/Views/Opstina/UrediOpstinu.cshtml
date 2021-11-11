@@ -1,0 +1,46 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    List<GradoviWM> gradovi = (List<GradoviWM>)ViewData["gradovi"];
+    Opstina o = (Opstina)ViewData["opstina"];
+}
+
+<div>
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Uredi</h2>
+                <ol>
+                    <li><a href="/Opstina">Vrati nazad</a></li>
+                    <li>Uredi</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+    <form class="table" action="/Opstina/SpasiUredjivanje">
+        <input name="ID" style="display:none" value="@o.ID" />
+        <div class="form-group">
+            <label>Naziv opstine</label>
+            <input class="form-control" name="nazivOpstine" value="@o.NazivOpstine" />
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="gradID">
+                <option>Odaberite grad</option>
+                @foreach (GradoviWM g in gradovi)
+                {
+                    if (g.ID == o.gradID)
+                    {
+                        <option selected value="@g.ID">@g.naziv</option>
+                    }
+                    <option value="@g.ID">@g.naziv</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Snimi" />
+        </div>
+    </form>
+    <a href="/Opstina">Vrati nazad</a>
+</div>
+

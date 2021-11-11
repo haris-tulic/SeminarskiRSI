@@ -1,0 +1,43 @@
+﻿@model WebAutoprevozncniko.ViewModels.GradDodajUredi
+@{
+    ViewData["Title"] = "DodajUredi";
+    string poruka = (string)TempData["greskaPoruka"];
+}
+
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+            <h2>Unesite grad</h2>
+            <ol>
+                @*<li><a href="/Grad">Vrati nazad</a></li>
+                <li>Unesite grad</li>*@
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/Grad/Snimi" method="post">
+    @Html.AntiForgeryToken()
+    <input type="text" hidden name="GradID" value="@Model.GradID" class="form-control" />
+    <div class="form-group">
+        <label>Naziv grada</label>
+        <input type="text" name="Naziv" value="@Model.naziv" class="form-control" style="width:50%" />
+    </div>
+    <div class="form-group">
+        <label>Postanski broj</label>
+        <input type="text" name="PostanskiBroj" value="@Model.PostanskiBroj" class="form-control" style="width:50%" />
+
+    </div>
+    <input type="submit" value="Snimi" />
+</form>
+<br />
+<a href="/Grad" class="btn btn-secondary">Vrati Nazad </a>
+@if (poruka != null)
+{
+    <br />
+    <br />
+    <div class="col-md-6">
+
+        <div class="alert alert-light">@poruka</div>
+    </div>
+}

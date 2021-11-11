@@ -1,0 +1,74 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "Dodaj";
+    List<ZonaVM> zona = (List<ZonaVM>)ViewData["Zona"];
+    List<ComboBox> vrstaKarte = (List<ComboBox>)ViewData["VrstaKarte"];
+    List<ComboBox> tipKarte = (List<ComboBox>)ViewData["TipKarte"];
+    Cjenovnik cj = (Cjenovnik)ViewData["Cjena"];
+}
+<section class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Uredi </h2>
+            <ol>
+                <li><a href="/Home">Vrati nazad</a></li>
+                <li>Uredi</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<form action="/Cjenovnik/UrediDodavanje">
+    <input name="ID" style="display:none" value="@cj.ID" />
+    <div class="form-group">
+        <select class="form-control" name="ZonaID">
+            <option>Broj zone</option>
+            @foreach (ZonaVM z in zona)
+            {
+                if (z.ID == cj.zonaID)
+                {
+                    <option selected value="@z.ID">@z.BrojZone</option>
+                }
+                <option value="@z.ID">@z.BrojZone</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="VrstaKarteID">
+            <option>Vrsta karte</option>
+            @foreach (ComboBox c in vrstaKarte)
+            {
+                if (c.ID == cj.vrstaKarteID)
+                {
+                    <option selected value="@c.ID">@c.naziv</option>
+                }
+                <option value="@c.ID">@c.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="tipKarteID">
+            <option>Tip karte</option>
+            @foreach (ComboBox c in tipKarte)
+            {
+                if (c.ID == cj.tipkarteID)
+                {
+                    <option selected value="@c.ID">@c.naziv</option>
+                }
+                <option value="@c.ID">@c.naziv</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Cijena karte</label>
+        <input class="form-control" name="Cijena" value="@cj.cijena" />
+    </div>
+    <div>
+        <input type="submit" value="Dodaj" />
+    </div>
+
+</form>
+<a class="form-control" href="/Cjenovnik">Vrati nazad</a>
+
+

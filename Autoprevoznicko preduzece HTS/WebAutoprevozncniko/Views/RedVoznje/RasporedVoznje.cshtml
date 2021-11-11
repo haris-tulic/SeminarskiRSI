@@ -1,0 +1,149 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@using Microsoft.Extensions.DependencyInjection;
+@using Microsoft.AspNetCore.Http;
+@using WebAutoprevozncniko.Helper
+@{
+    ViewData["Title"] = "RasporedVoznje";
+    List<RedVoznjePrikazVM> redvoznje = (List<RedVoznjePrikazVM>)ViewData["redVoznje"];
+    Login login = Context.GetLogiraniKorisnik();
+    MyContext _context = Context.RequestServices.GetService<MyContext>();
+}
+
+
+@if (login == null)
+{
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:20px">
+                <h2>Red voznje </h2>
+                @*<ol>
+                        <li><a href="/Karta">Vrati nazad</a></li>
+                        <li>Red voznje</li>
+                    </ol>*@
+            </div>
+        </div>
+    </section>
+
+    <form class="table">
+        <table>
+            <tr>
+
+                <td>Stanica polaska</td>
+                <td>Stanica dolaska</td>
+                <td>Vrijeme polaska</td>
+                @*<td>Obrisi</td>
+                    <td>Uredi</td>*@
+            </tr>
+            @foreach (RedVoznjePrikazVM rv in redvoznje)
+            {
+                <tr>
+
+                    <td>@rv.LinijaPolaska</td>
+                    <td>@rv.LinijaDolaska</td>
+                    <td>@rv.vrijemePolaska</td>
+                    @*<td>
+                            <a href="/RedVoznje/Obrisi?ID=@rv.ID">Obrisi</a>
+                        </td>
+                        <td>
+                            <a href="/RedVoznje/Uredi?ID=@rv.ID">Uredi</a>
+                        </td>*@
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Home">Vrati nazad</a>
+}
+else if (_context.vozac.Where(x => x.loginID == login.ID).FirstOrDefault() != null)
+{
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+                <h2>Red voznje </h2>
+                @*<ol>
+                        <li><a href="/Karta">Vrati nazad</a></li>
+                        <li>Red voznje</li>
+                    </ol>*@
+            </div>
+        </div>
+    </section>
+    <form class="table">
+        <table>
+            <tr>
+
+                <td>Stanica polaska</td>
+                <td>Stanica dolaska</td>
+                <td>Vrijeme polaska</td>
+                @*<td>Obrisi</td>
+                    <td>Uredi</td>*@
+            </tr>
+            @foreach (RedVoznjePrikazVM rv in redvoznje)
+            {
+                <tr>
+
+                    <td>@rv.LinijaPolaska</td>
+                    <td>@rv.LinijaDolaska</td>
+                    <td>@rv.vrijemePolaska</td>
+                    @*<td>
+                            <a href="/RedVoznje/Obrisi?ID=@rv.ID">Obrisi</a>
+                        </td>
+                        <td>
+                            <a href="/RedVoznje/Uredi?ID=@rv.ID">Uredi</a>
+                        </td>*@
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Home">Vrati nazad</a>
+}
+else
+{
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+                <h2>Red voznje </h2>
+                @*<ol>
+                        <li><a href="/Karta">Vrati nazad</a></li>
+                        <li>Red voznje</li>
+                    </ol>*@
+            </div>
+        </div>
+    </section>
+    <form class="table">
+        <table>
+            <tr>
+
+                <td>Stanica polaska</td>
+                <td>Stanica dolaska</td>
+                <td>Vrijeme polaska</td>
+                <td>Obrisi</td>
+                <td>Uredi</td>
+            </tr>
+            @foreach (RedVoznjePrikazVM rv in redvoznje)
+            {
+                <tr>
+
+                    <td>@rv.LinijaPolaska</td>
+                    <td>@rv.LinijaDolaska</td>
+                    <td>@rv.vrijemePolaska</td>
+                    <td>
+                        <a href="/RedVoznje/Obrisi?ID=@rv.ID">Obrisi</a>
+                    </td>
+                    <td>
+                        <a href="/RedVoznje/Uredi?ID=@rv.ID">Uredi</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/RedVoznje">Vrati nazad</a>
+}

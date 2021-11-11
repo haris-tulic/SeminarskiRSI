@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autoprevoznicko preduzece HTS", "Autoprevoznicko preduzece HTS\Autoprevoznicko preduzece HTS.csproj", "{0B6BFF31-B036-4406-BA60-BD884163DB3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutoprevozncniko", "WebAutoprevozncniko\WebAutoprevozncniko.csproj", "{458B8902-8E8C-4976-BD3F-3FA1C50BDD47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B6BFF31-B036-4406-BA60-BD884163DB3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6BFF31-B036-4406-BA60-BD884163DB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6BFF31-B036-4406-BA60-BD884163DB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6BFF31-B036-4406-BA60-BD884163DB3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{458B8902-8E8C-4976-BD3F-3FA1C50BDD47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{458B8902-8E8C-4976-BD3F-3FA1C50BDD47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{458B8902-8E8C-4976-BD3F-3FA1C50BDD47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{458B8902-8E8C-4976-BD3F-3FA1C50BDD47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E547321-BBBF-44DC-9EAA-700F8BE8E76B}
+	EndGlobalSection
+EndGlobal

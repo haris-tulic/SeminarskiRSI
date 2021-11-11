@@ -1,0 +1,30 @@
+﻿
+@model WebAutoprevozncniko.ViewModels.ZonaPrikazVM;
+@{
+    ViewData["Title"] = "PrikazPutnika";
+   
+}
+
+<select asp-for="ID" asp-items="@Model.zone" class="form-control" id="zona" style="margin-top:150px;">
+    <option disabled selected>Pretraga po zoni: </option>
+</select>
+
+<table class="table" id="tabelaID">
+    <thead>
+        <tr>
+           <th>ID</th>
+            <th>Ime</th>
+            <th>prezime</th>
+
+        </tr>
+    </thead>
+    <tbody id="tb">
+
+    </tbody>
+</table>
+
+<script>
+
+   
+</script>
+<a class="btn btn-info" href="/Karta/ListaKarata">Lista svih prodatih karata</a>

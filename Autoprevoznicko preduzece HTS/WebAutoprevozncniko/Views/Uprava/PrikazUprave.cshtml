@@ -1,0 +1,53 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "PrikazUprave";
+    List<UpravaPrikaziVM> uprava = (List<UpravaPrikaziVM>)ViewData["uprava"];
+}
+
+
+<div>
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center" style="padding-top:40px">
+                <h2>Lista uprave </h2>
+                @*<ol>
+                    <li><a href="/Uprava">Vrati nazad</a></li>
+                    <li>Lista uprave</li>
+                </ol>*@
+            </div>
+        </div>
+    </section>
+    <form class="table">
+        <table>
+            <tr>
+                <td>Ime</td>
+                <td>Prezime</td>
+                <td>Datum Rodjenja</td>
+                <td>Korisnicko Ime</td>
+                <td>Obrisi</td>
+                <td>Uredi</td>
+            </tr>
+
+            @foreach (UpravaPrikaziVM u in uprava)
+            {
+                <tr>
+                    <td>@u.Ime</td>
+                    <td>@u.Prezime</td>
+                    <td>@u.DatumRodjenja</td>
+                    <td>@u.login</td>
+                    <td>
+                        <a class="btn btn-danger" href="/Uprava/ObrisiUprava?UpravaID=@u.ID">Obrisi</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/Uprava/UrediUprava?UpravaID=@u.ID">Uredi</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </form>
+    <br />
+    <a class="btn btn-secondary" href="/Uprava">Vrati nazad</a>
+</div>

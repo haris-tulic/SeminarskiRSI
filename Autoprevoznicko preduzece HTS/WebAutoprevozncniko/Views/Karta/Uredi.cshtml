@@ -1,0 +1,112 @@
+﻿@using Autoprevoznicko_preduzece_HTS.Model;
+@using WebAutoprevozncniko.ViewModels;
+@{
+    ViewData["Title"] = "DodajKartu";
+    List<ComboBox> VrstaKarte = (List<ComboBox>)ViewData["VrstaKarte"];
+    List<ComboBox> TipKarte = (List<ComboBox>)ViewData["TipKarte"];
+    List<ComboBox> Zona = (List<ComboBox>)ViewData["Zona"];
+    Karta ka = (Karta)ViewData["Karta"];
+    List<ComboBox> kupac = (List<ComboBox>)ViewData["Kupac"];
+
+}
+<html>
+
+
+<head>
+
+
+    <title>Dodaj formu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Uredi </h2>
+                <ol>
+                    <li><a href="/Karta">Vrati nazad</a></li>
+                    <li>Uredi</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+    <div id="Okvir">
+        <form class="table" action="/Karta/UrediKartu">
+            <input name="ID" value="@ka.ID" style="display:none" />
+            <div class="form-group">
+                <select name="kupacID" class="form-control">
+                    <option>Kupac</option>
+                    @foreach (ComboBox k in kupac)
+                    {
+                        if (k.ID == ka.kupacID)
+                        {
+                            <option selected value="@k.ID">@k.naziv</option>
+                        }
+                        <option value="@k.ID">@k.naziv</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select name="TipKarteID" class="form-control">
+                    <option>Odaberite tip karte</option>
+                    @foreach (ComboBox tk in TipKarte)
+                    {
+                        if (tk.ID == ka.tipKarteID)
+                        {
+                            <option selected value="@tk.ID">@tk.naziv</option>
+                        }
+                        <option value="@tk.ID">@tk.naziv</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="VrstaKarteID" class="form-control">
+                    <option>Odaberite vrstu karte</option>
+                    @foreach (ComboBox vk in VrstaKarte)
+                    {
+                        if (vk.ID == ka.vrstaKarteID)
+                        {
+                            <option selected value="@vk.ID">@vk.naziv</option>
+                        }
+                        <option value="@vk.ID">@vk.naziv</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Datum vadjenja karte</label>
+                <input class="form-control" type="datetime" name="DatumVadjenja" value="@ka.DatumVadjenjaKarte" />
+            </div>
+            <div class="form-group">
+                <label>Datum vazenja karte</label>
+                <input class="form-control" type="datetime" name="DatumVazenja" value="@ka.DatumVazenjaKarte" />
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="ZonaID">
+                    <option style="color:green;background-color:yellow">Zona za koju kupujete kartu</option>
+                    @foreach (ComboBox z in Zona)
+                    {
+                        if (z.ID == ka.gradskaLinijaID)
+                        {
+                            <option selected value="@z.ID">@z.naziv</option>
+                        }
+                        <option value="@z.ID">@z.naziv</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <input type="submit" value="Snimi" />
+
+
+
+        </form>
+    </div>
+    <a class="form-control" href="/Karta">Vrati nazad</a>
+</body>
+</html>
+
